@@ -1,0 +1,23 @@
+
+#include "includes/lemin.h"
+
+void	ft_startandend(int fm, t_parse *room, t_parse *road)
+{
+	t_parse *tmp;
+	char	*start;
+	char	*end;
+	t_info  *info;
+
+	info->fm = fm;
+	tmp = room;
+	while (ft_strcmp("##start", tmp->str))
+		tmp = tmp->next;
+	start = tmp->next->str;
+	tmp = room;
+	while (ft_strcmp("##end", tmp->str))
+		tmp = tmp->next;
+	end = tmp->next->str;
+	info->end = end;
+	info->start = start;
+//	ft_searchbestroad(road, info);
+}
