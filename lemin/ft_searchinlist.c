@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_searchinlist.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 17:49:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/04/27 17:03:11 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/02 18:08:38 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/02 18:12:02 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "includes/lemin.h"
 
-int		ft_isalnum(int c)
+int		ft_searchinlist(char *str, t_parse *file)
 {
-	if ((c > 64 && c < 91) || (c > 96 && c < 123) || (c > 47 && c < 58))
-		return (1);
-	else
-		return (0);
+	while (file)
+	{
+		if (!ft_strcmp(str, file->str))
+			return (0);
+		file = file->next;
+	}
+	return (1);
 }

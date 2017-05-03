@@ -6,7 +6,7 @@
 #    By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/04 15:33:12 by kahantar          #+#    #+#              #
-#    Updated: 2017/04/05 14:41:57 by kahantar         ###   ########.fr        #
+#    Updated: 2017/05/03 08:03:46 by kahantar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,16 @@ SRCS =  ft_add.c \
 	ft_searchbestroad.c \
 	ft_listend.c \
 	ft_listlen.c \
-	ft_cpypile.c
+	ft_cpypile.c \
+	ft_createtree.c \
+	ft_searchroominroad.c \
+	ft_firstroominroad.c \
+	ft_createlist.c \
+	ft_searchchild.c \
+	ft_searchbrother.c \
+	ft_searchinroom.c \
+	ft_build.c \
+	ft_searchinlist.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_build.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 17:49:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/04/27 17:03:11 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/01 15:36:32 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/01 15:44:18 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "includes/lemin.h"
 
-int		ft_isalnum(int c)
+t_List		*ft_build(t_tree *tree, t_List *lst)
 {
-	if ((c > 64 && c < 91) || (c > 96 && c < 123) || (c > 47 && c < 58))
-		return (1);
-	else
-		return (0);
+	t_List *elem;
+
+	if (!(elem = malloc(sizeof(t_List))))
+		return (NULL);
+	elem->node = tree;
+	elem->next = lst;
+	return (elem);
 }

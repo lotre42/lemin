@@ -51,7 +51,7 @@ char	*ft_firstword(char *str)
 	return (start);
 }
 
-void	ft_searchbestroad(t_parse *rooms, t_parse *road)
+int	ft_searchbestroad(t_parse *rooms, t_parse *road)
 {
 	t_parse *tmp;
 	t_parse *chemin;
@@ -62,9 +62,14 @@ void	ft_searchbestroad(t_parse *rooms, t_parse *road)
 	chemin = NULL;
 	x = 0;
 	end = ft_startandend(rooms, 1);
+	if (!end)
+		return (0);
 	room = ft_startandend(rooms, 0);
+	if (!room)
+		return (0);
 	ft_addend(room, &chemin);
-	while (tmp != NULL && x < ft_listlen(road))
+	tmp = road;
+/*	while (tmp != NULL)
 	{
 		tmp = road;
 		while (ft_strncmp(tmp->str, room, ft_strlen(room)) && tmp != NULL)
@@ -74,10 +79,8 @@ void	ft_searchbestroad(t_parse *rooms, t_parse *road)
 			room = ft_lastword(tmp->str);
 			ft_addend(room, &chemin);
 		}
-		if (!ft_strncmp(room, end, ft_strlen(end)))
-			x = ft_listlen(road);
-		x++;
 	}
-//	ft_displaylist(chemin);
-//	ft_putstr(ft_listend(chemin));
+	ft_displaylist(chemin);
+//	ft_putstr(ft_listend(chemin));*/
+	return (1);
 }

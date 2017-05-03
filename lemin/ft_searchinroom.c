@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_searchinroom.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 17:49:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/04/27 17:03:11 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/03 08:01:33 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/03 08:03:07 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "includes/lemin.h"
 
-int		ft_isalnum(int c)
+int		ft_searchinroom(t_parse *room, char *str)
 {
-	if ((c > 64 && c < 91) || (c > 96 && c < 123) || (c > 47 && c < 58))
-		return (1);
-	else
-		return (0);
+	while (room)
+	{
+		if (!ft_strcmp(room->str, str))
+			return (1);
+		room = room->next;
+	}
+	return (0);
 }
