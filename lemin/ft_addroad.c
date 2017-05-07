@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_searchroominroad.c                             :+:      :+:    :+:   */
+/*   ft_addroad.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 14:46:52 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/03 14:49:34 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/07 08:44:27 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/07 08:47:42 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char*ft_searchroominroad(char *str)
+int		ft_addroad(char *str, int level, t_road **add)
 {
-	char *seconderoom;
-	int i;
-	int j;
+	t_road *new;
+	t_road *tmp;
 
-	seconderoom = NULL;
-	i = 0;
-	j = 0;
-	while (str[i] != '-' &&str[i] != '\0')
-		i++;
-	if (!(seconderoom = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1))))
-		return (NULL);
-	i++;
-	while (str[i] != '\0')
+	if (!(new = malloc(sizeof(t_road))))
+		return (0);
+	new->str = ft_strdup(str);
+	new->level = level;
+	new->next = NULL;
+	tmp = *add;
+	if (!tmp)
+		*add = new;
+	else
 	{
-		seconderoom[j] = str[i];
-		i++;
-		j++;
+		while (tmp->next)
+		{
+			tmp = tmp->next;
+		}
+		tmp->next = new;
 	}
-	seconderoom[j] = '\0';
-	return (seconderoom);
+	return (0);
 }

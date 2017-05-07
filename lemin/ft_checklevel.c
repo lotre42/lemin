@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_searchroominroad.c                             :+:      :+:    :+:   */
+/*   ft_checklevel.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 14:46:52 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/03 14:49:34 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/07 09:21:20 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/07 12:06:44 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char*ft_searchroominroad(char *str)
+int	ft_checklevel(t_List *tree, char *str, int i, t_road **road)
 {
-	char *seconderoom;
-	int i;
-	int j;
 
-	seconderoom = NULL;
-	i = 0;
-	j = 0;
-	while (str[i] != '-' &&str[i] != '\0')
-		i++;
-	if (!(seconderoom = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1))))
-		return (NULL);
-	i++;
-	while (str[i] != '\0')
+	tree->node->level = i;
+	ft_addroad(tree->node->str, i, road);
+	//if (!ft_strcmp(tree->node->str, str))
+	//	return (NULL);
+	if (tree->next)
 	{
-		seconderoom[j] = str[i];
-		i++;
-		j++;
+		ft_checklevel(tree->next, str, i, road);
 	}
-	seconderoom[j] = '\0';
-	return (seconderoom);
+	if (tree->node->child)
+	{
+		ft_checklevel(tree->node->child, str, i + 1, road);
+	}
+	return (1);
 }

@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_searchroominroad.c                             :+:      :+:    :+:   */
+/*   ft_roominroad.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 14:46:52 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/03 14:49:34 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/03 14:48:04 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/03 14:48:08 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char*ft_searchroominroad(char *str)
+static int	ft_search(char *str, t_parse *room)
 {
-	char *seconderoom;
-	int i;
-	int j;
+	t_parse *tmp;
 
-	seconderoom = NULL;
-	i = 0;
-	j = 0;
-	while (str[i] != '-' &&str[i] != '\0')
-		i++;
-	if (!(seconderoom = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1))))
-		return (NULL);
-	i++;
-	while (str[i] != '\0')
+	tmp = room;
+	while (tmp)
 	{
-		seconderoom[j] = str[i];
-		i++;
-		j++;
+		if (!ft_strcmp(tmp->str, str))
+			return (1);
+		tmp = tmp->next;
 	}
-	seconderoom[j] = '\0';
-	return (seconderoom);
+	return (0);
+}
+
+int			ft_roominroad(char *str, t_parse *room)
+{
+	char	*one;
+	char	*seconde;
+
+	one = ft_firstword(str, '-');
+	seconde = ft_lastword(str, '-');
+	if (ft_search(one, room) && ft_search(seconde, room))
+		return (1);
+	return (0);
 }

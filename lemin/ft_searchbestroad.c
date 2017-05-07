@@ -1,7 +1,7 @@
 
 #include "includes/lemin.h"
 
-char	*ft_lastword(char *str)
+char	*ft_lastword(char *str, char c)
 {
 	char	*last;
 	int	i;
@@ -11,7 +11,7 @@ char	*ft_lastword(char *str)
 	while (str[i] != '\0')
 		i++;
 	j = i;
-	while (str[i] != '-' && i > 0)
+	while (str[i] != c && i > 0)
 		i--;
 	last = malloc(sizeof(char) * (j - i) + 1);
 	i++;
@@ -26,7 +26,7 @@ char	*ft_lastword(char *str)
 	return (last);
 }
 
-char	*ft_firstword(char *str)
+char	*ft_firstword(char *str, char c)
 {
 	char	*start;
 	int	i;
@@ -34,16 +34,16 @@ char	*ft_firstword(char *str)
 
 	i = 0;
 	j = 0;
-	while (str[i] == ' ' && str[i] != '\0')
+	while (str[i] == c && str[i] != '\0')
 		i++;
 	j = i;
-	while (str[i] != ' ' && str[i] != '\0')
+	while (str[i] != c && str[i] != '\0')
 		i++;
 	start = malloc(sizeof(char) * (i - j) + 1);
 	i = 0;
-	while (str[j] != ' ' && str[i] != '\0')
+	while (str[j] != c && str[i] != '\0')
 	{
-		start[j] = str[j];
+		start[i] = str[j];
 		i++;
 		j++;
 	}

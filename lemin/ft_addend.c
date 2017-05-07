@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 15:48:39 by kahantar          #+#    #+#             */
-/*   Updated: 2017/04/01 19:50:25 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/07 08:44:43 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_addend(char *str, t_parse **add)
 
 	if (!(new = malloc(sizeof(t_parse))))
 		return (0);
-	new->str = str;
+	new->str = ft_strdup(str);
 	new->next = NULL;
 	tmp = *add;
 	if (!tmp)

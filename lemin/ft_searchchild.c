@@ -6,36 +6,52 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 07:55:32 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/03 08:09:57 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/07 11:43:16 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char	*ft_searchchild(char *str, t_parse *road, t_parse *file, t_parse *room)
+char	*ft_searchchild(char *str, t_stock *stok)
 {
 	char *one;
 	char *seconde;
+	t_parse *tmp;
 
+	tmp = stok->road;
 	seconde = NULL;
 	one = NULL;
-	while (road)
+	while (tmp)
 	{
-		one = ft_firstroominroad(road->str);
+		one = ft_firstroominroad(tmp->str);
 		if (!ft_strcmp(one, str))
 		{
-			seconde = ft_searchroominroad(road->str);
-			if (ft_searchinlist(seconde, file) && ft_searchinroom(room, seconde))
+			free(one);
+			seconde = ft_searchroominroad(tmp->str);
+			if (ft_searchinlist(tmp->str, stok->file) &&
+					ft_searchinroom(stok->room, seconde))
+			{
+				ft_addend(tmp->str, &stok->file);
 				return (seconde);
+			}
 		}
-		one = ft_searchroominroad(road->str);
+		if (one)
+			free(one);
+		one = ft_searchroominroad(tmp->str);
 		if (!ft_strcmp(one, str))
 		{
-			seconde = ft_firstroominroad(road->str);
-			if (ft_searchinlist(seconde, file) && ft_searchinroom(room, seconde))
+			free(one);
+			seconde = ft_firstroominroad(tmp->str);
+			if (ft_searchinlist(tmp->str, stok->file) &&
+					ft_searchinroom(stok->room, seconde))
+			{
+				ft_addend(tmp->str, &stok->file);
 				return (seconde);
+			}
 		}
-		road = road->next;
+		if (one)
+			free(one);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }

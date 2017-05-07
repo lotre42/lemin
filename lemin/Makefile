@@ -6,7 +6,7 @@
 #    By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/04 15:33:12 by kahantar          #+#    #+#              #
-#    Updated: 2017/05/03 08:03:46 by kahantar         ###   ########.fr        #
+#    Updated: 2017/05/07 09:35:08 by kahantar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,12 @@ FLAGS 	= -Wall -Werror -Wextra
 
 SRCS =  ft_add.c \
 	ft_addend.c \
+	ft_addroad.c \
 	main.c \
 	ft_parse.c \
+	ft_checklevel.c \
 	ft_displaylist.c \
+	ft_displayroad.c \
 	ft_startandend.c \
 	ft_searchbestroad.c \
 	ft_listend.c \
@@ -26,13 +29,17 @@ SRCS =  ft_add.c \
 	ft_cpypile.c \
 	ft_createtree.c \
 	ft_searchroominroad.c \
+	ft_roominroad.c \
 	ft_firstroominroad.c \
 	ft_createlist.c \
 	ft_searchchild.c \
 	ft_searchbrother.c \
 	ft_searchinroom.c \
+	ft_errorinroom.c \
 	ft_build.c \
-	ft_searchinlist.c
+	ft_searchlittleroad.c \
+	ft_searchinlist.c \
+	ft_searchlevel.c
 
 OBJ = $(SRC:.c=.o)
 
