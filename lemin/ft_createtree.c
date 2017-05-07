@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 07:46:15 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/07 12:07:57 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/07 12:33:04 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_tree	*ft_createtree(char *str, t_stock *stok)
 	name = ft_strdup(str);
 	tree->str = name;
 	ft_addend(name, &stok->file);
-	tree->level = -10;
+	tree->level = 2147483647;
 	tmp = ft_searchchild(name, stok);
 	if (!ft_strcmp(name, stok->end))
 		tree->child = NULL;

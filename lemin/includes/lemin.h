@@ -40,6 +40,7 @@ typedef struct		s_stock
 	t_parse *com;
 	t_parse *file;
 	char	*end;
+	char	*start;
 }					t_stock;
 
 int				ft_add(char *str, t_parse **add);

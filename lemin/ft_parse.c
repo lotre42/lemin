@@ -37,6 +37,7 @@ static t_stock	*ft_initstock(void)
 	(stock)->com = NULL;
 	(stock)->file = NULL;
 	stock->end = NULL;
+	stock->start = NULL;
 	return (stock);
 }
 
@@ -109,6 +110,7 @@ t_parse		*ft_parse(int argc, char **argv)
 	str = ft_startandend(stok->room, 0);
 	stok->end = ft_startandend(stok->room, 1);
 	tree = ft_createlist(str, NULL, stok);
+	stok->start = str;
 	if (ft_searchinlist(stok->end, stok->file))
 	{
 		ft_putendl("ERROR");
@@ -116,7 +118,7 @@ t_parse		*ft_parse(int argc, char **argv)
 	}
 //	ft_displaylist(stok->file);
 	ft_checklevel(tree, stok->end, 0, &road);
-//	ft_displayroad(road);
+	//ft_displayroad(road);
 	ft_searchlittleroad(stok, road);
 	return (lem);
 }

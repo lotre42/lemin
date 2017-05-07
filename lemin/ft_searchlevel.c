@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 09:32:26 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/07 09:34:31 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/07 12:39:14 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int		ft_searchlevel(t_road *road, char *str)
 			return (road->level);
 		road = road->next;
 	}
-	return (-10);
+	return (2147483647);
 }
