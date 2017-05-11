@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_createtree.c                                    :+:      :+:    :+:   */
+/*   ft_nbant.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 07:46:15 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/10 19:39:27 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/11 17:14:46 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/11 17:16:48 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-t_tree	*ft_createtree(char *str, t_stock *stok)
+int	ft_nbant(char *str)
 {
-	t_tree *tree;
-	char	*name;
-	char	*tmp;
+	int ant;
+	int i;
 
-	if (!(tree = malloc(sizeof(t_tree))))
-		return (NULL);
-	name = ft_strdup(str);
-	tree->str = name;
-	ft_addend(name, &stok->file);
-	tree->level = 2147483647;
-	tmp = ft_searchchild(name, stok);
-	if (!ft_strcmp(name, stok->end))
-		tree->child = NULL;
-	else if (tmp)
+	ant = 0;
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
 	{
-		tree->child = ft_createlist(tmp, name, stok);
-		free (tmp);
+		if (str[i] < 48 || str[i] > 57)
+		{
+			i = 0;
+			break ;
+		}
+		i++;
+	}
+	if (i > 0)
+	{
+		ant = ft_atoi(str);
+		if (ant > 2147483647 || ant < 0)
+			return (0);
+		return (1);
 	}
 	else
-		tree->child = NULL;
-	return (tree);
+		return (0);
 }

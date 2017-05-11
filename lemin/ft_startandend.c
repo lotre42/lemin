@@ -1,7 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_startandend.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/11 18:16:45 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/11 18:17:13 by kahantar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char	*ft_startandend(t_parse *room, int i)
+static char	*ft_returnroom(char *start, char *end, int i)
+{
+	if (!start || !end)
+	{
+		ft_putstr("ERROR");
+		return (NULL);
+	}
+	if (i == 1 && end)
+	{
+		if (start)
+			free(start);
+		return (end);
+	}
+	if (i == 0 && start)
+	{
+		if (end)
+			free(end);
+		return (start);
+	}
+	return (NULL);
+}
+
+char		*ft_startandend(t_parse *room, int i)
 {
 	t_parse *tmp;
 	char	*start;
@@ -12,7 +45,7 @@ char	*ft_startandend(t_parse *room, int i)
 	start = NULL;
 	while (tmp)
 	{
-		if((!ft_strcmp("##start", tmp->str) &&
+		if ((!ft_strcmp("##start", tmp->str) &&
 					!ft_strcmp("##end", tmp->next->str))
 			|| (!ft_strcmp("##start", tmp->str) &&
 				!ft_strcmp("##end", tmp->next->str)))
@@ -26,14 +59,5 @@ char	*ft_startandend(t_parse *room, int i)
 			end = ft_strdup(tmp->next->str);
 		tmp = tmp->next;
 	}
-	if (!start || !end)
-	{
-		ft_putstr("ERROR");
-		return (NULL);
-	}
-	if (i == 1 && end)
-		return (end);
-	if (i == 0 && start)
-		return (start);
-	return (NULL);
+	return (ft_returnroom(start, end, i));
 }

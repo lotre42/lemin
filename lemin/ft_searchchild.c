@@ -6,50 +6,56 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 07:55:32 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/07 11:43:16 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:45:02 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char	*ft_searchchild(char *str, t_stock *stok)
+static char	*ft_returnchild(char *one, char *str, t_stock *stok, int i)
+{
+	char *seconde;
+
+	seconde = NULL;
+	free(one);
+	if (i == 0)
+		seconde = ft_searchroominroad(str);
+	else
+		seconde = ft_firstroominroad(str);
+	if (ft_searchinlist(str, stok->file) &&
+			ft_searchinroom(stok->room, seconde))
+	{
+		ft_addend(str, &stok->file);
+		return (seconde);
+	}
+	free(seconde);
+	return (NULL);
+}
+
+char		*ft_searchchild(char *str, t_stock *stok)
 {
 	char *one;
 	char *seconde;
 	t_parse *tmp;
 
 	tmp = stok->road;
-	seconde = NULL;
-	one = NULL;
 	while (tmp)
 	{
 		one = ft_firstroominroad(tmp->str);
 		if (!ft_strcmp(one, str))
 		{
-			free(one);
-			seconde = ft_searchroominroad(tmp->str);
-			if (ft_searchinlist(tmp->str, stok->file) &&
-					ft_searchinroom(stok->room, seconde))
-			{
-				ft_addend(tmp->str, &stok->file);
+			if ((seconde = ft_returnchild(one, tmp->str, stok, 0)))
 				return (seconde);
-			}
 		}
-		if (one)
+		else
 			free(one);
 		one = ft_searchroominroad(tmp->str);
 		if (!ft_strcmp(one, str))
 		{
-			free(one);
-			seconde = ft_firstroominroad(tmp->str);
-			if (ft_searchinlist(tmp->str, stok->file) &&
-					ft_searchinroom(stok->room, seconde))
-			{
-				ft_addend(tmp->str, &stok->file);
+			if ((seconde = ft_returnchild(one, tmp->str, stok, 1)))
 				return (seconde);
-			}
 		}
-		if (one)
+		else
 			free(one);
 		tmp = tmp->next;
 	}

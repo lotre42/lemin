@@ -6,7 +6,7 @@
 #    By: kahantar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/19 10:49:19 by kahantar          #+#    #+#              #
-#    Updated: 2017/03/30 10:56:23 by kahantar         ###   ########.fr        #
+#    Updated: 2017/05/11 15:24:24 by kahantar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRCS = 	ft_strdup.c \
 		ft_lstdel.c \
 		ft_lstiter.c \
 		ft_lstnew.c \
+		ft_putendlreturn.c \
 		get_next_line.c
 
 OBJ = $(SRCS:.c=.o)

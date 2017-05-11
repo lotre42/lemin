@@ -1,45 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_roominroad.c                                    :+:      :+:    :+:   */
+/*   ft_freepile.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 14:48:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/09 16:01:46 by kahantar         ###   ########.fr       */
+/*   Created: 2017/04/24 15:48:43 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/07 15:07:27 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-static int	ft_search(char *str, t_parse *room)
+int		ft_freepile(t_parse **pile)
 {
-	t_parse *tmp;
+	t_parse *cppile;
 
-	tmp = room;
-	while (tmp)
+	cppile = (*pile);
+	while (cppile)
 	{
-		if (!ft_strcmp(tmp->str, str))
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-int			ft_roominroad(char *str, t_parse *room)
-{
-	char	*one;
-	char	*seconde;
-
-	one = ft_firstword(str, '-');
-	seconde = ft_lastword(str, '-');
-	if (ft_search(one, room) && ft_search(seconde, room))
-	{
-		if (one)
-			free(one);
-		if (seconde)
-			free(seconde);
-		return (1);
+		cppile = (*pile)->next;
+		if ((*pile)->str)
+			free((*pile)->str);
+		free(*pile);
+		*pile = cppile;
 	}
 	return (0);
 }

@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_searchroominroad.c                              :+:      :+:    :+:   */
+/*   ft_putendlreturn.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 18:19:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:19:47 by kahantar         ###   ########.fr       */
+/*   Created: 2017/04/24 10:09:40 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/11 17:26:08 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/lemin.h"
+#include "includes/libft.h"
 
-char*ft_searchroominroad(char *str)
+int	ft_putendlreturn(char const *s)
 {
-	char	*seconderoom;
-	int		i;
-	int		j;
+	int i;
 
-	seconderoom = NULL;
 	i = 0;
-	j = 0;
-	while (str[i] != '-' && str[i] != '\0')
-		i++;
-	if (!(seconderoom = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1))))
-		return (NULL);
-	i++;
-	while (str[i] != '\0')
+	if (s)
 	{
-		seconderoom[j] = str[i];
-		i++;
-		j++;
+		while (s[i] != '\0')
+		{
+			ft_putchar(s[i]);
+			i++;
+		}
+		ft_putchar('\n');
 	}
-	seconderoom[j] = '\0';
-	return (seconderoom);
+	return (0);
 }

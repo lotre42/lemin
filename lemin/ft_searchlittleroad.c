@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 09:24:25 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/07 14:38:59 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:12:11 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,46 @@ static char		*thebestroom(t_parse *lst, t_road *road)
 	if (!lst)
 		return (NULL);
 	if (!(lst->next))
-		return (lst->str);
-	tmp = lst->str;
+		return (ft_strdup(lst->str));
+	tmp = ft_strdup(lst->str);
 	lst = lst->next;
 	while (lst)
 	{
 		if (ft_searchlevel(road, tmp) > ft_searchlevel(road, lst->str))
 		{
 			free(tmp);
-			tmp = lst->str;
+			tmp = ft_strdup(lst->str);
 		}
 		lst = lst->next;
 	}
 	return (tmp);
 }
 
+static	void	ft_cuproom(char *str, t_parse **lst, int i)
+{
+	char *t;
+
+	if (i == 0)
+	{
+		t = ft_searchroominroad(str);
+		ft_addend(t, lst);
+		free(t);
+	}
+	if (i == 1)
+	{
+		t = ft_firstroominroad(str);
+		ft_addend(t, lst);
+		free(t);
+	}
+}
+
 static t_parse	*therooms(t_stock *stok, char *str)
 {
-	t_parse *tmp;
-	t_parse *lst;
-	char *one;
-	char *seconde;
+	t_parse	*tmp;
+	t_parse	*lst;
+	char	*one;
+	char	*t;
 
-	seconde = NULL;
 	one = NULL;
 	tmp = stok->road;
 	lst = NULL;
@@ -49,34 +66,24 @@ static t_parse	*therooms(t_stock *stok, char *str)
 	{
 		one = ft_firstroominroad(tmp->str);
 		if (!ft_strcmp(one, str))
-		{
-			free(one);
-			seconde = ft_searchroominroad(tmp->str);
-			ft_addend(seconde, &lst);
-		}
+			ft_cuproom(tmp->str, &lst, 0);
 		if (one)
 			free(one);
 		one = ft_searchroominroad(tmp->str);
 		if (!ft_strcmp(one, str))
-		{
-			free(one);
-			seconde = ft_firstroominroad(tmp->str);
-			ft_addend(seconde, &lst);
-		}
+			ft_cuproom(tmp->str, &lst, 1);
 		if (one)
 			free(one);
 		tmp = tmp->next;
 	}
-	//ft_displaylist(lst);
 	return (lst);
 }
-
 
 t_parse			*ft_searchlittleroad(t_stock *stok, t_road *road)
 {
 	t_parse *tmp;
 	t_parse *ret;
-	char *little;
+	char	*little;
 
 	ret = NULL;
 	tmp = NULL;
@@ -87,9 +94,12 @@ t_parse			*ft_searchlittleroad(t_stock *stok, t_road *road)
 	while (ft_strcmp(little, stok->start))
 	{
 		tmp = therooms(stok, little);
+		free(little);
 		little = thebestroom(tmp, road);
 		ft_add(little, &ret);
+		ft_freepile(&tmp);
 	}
-	ft_displaylist(ret);
-	return (NULL);
+	if (little)
+		free(little);
+	return (ret);
 }

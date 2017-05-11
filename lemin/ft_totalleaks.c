@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_searchroominroad.c                              :+:      :+:    :+:   */
+/*   ft_totalleaks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 18:19:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:19:47 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/11 15:10:54 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/11 17:14:33 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char*ft_searchroominroad(char *str)
+void	ft_totalleaks(t_parse **lem, t_stock *stok, t_road **road,
+		t_llist *tree)
 {
-	char	*seconderoom;
-	int		i;
-	int		j;
-
-	seconderoom = NULL;
-	i = 0;
-	j = 0;
-	while (str[i] != '-' && str[i] != '\0')
-		i++;
-	if (!(seconderoom = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1))))
-		return (NULL);
-	i++;
-	while (str[i] != '\0')
-	{
-		seconderoom[j] = str[i];
-		i++;
-		j++;
-	}
-	seconderoom[j] = '\0';
-	return (seconderoom);
+	ft_freestock(stok);
+	ft_freepile(lem);
+	ft_freeroad(road);
+	ft_freetree(tree);
 }

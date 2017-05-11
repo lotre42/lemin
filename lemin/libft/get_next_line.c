@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:36:55 by kahantar          #+#    #+#             */
-/*   Updated: 2017/03/30 09:14:24 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:11:56 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ char	*ft_cuprest(int n, char *phrase, int c)
 	char	*str2;
 
 	j = -1;
-	str = (char*)malloc(sizeof(char) * c + 1);
-	str2 = malloc(sizeof(char) * (ft_strlen(phrase)));
-	if (!str2 || !str)
+	if (!(str = (char*)malloc(sizeof(char) * c + 1)))
+		return (NULL);
+	if (!(str2 = malloc(sizeof(char) * (ft_strlen(phrase)))))
 		return (NULL);
 	while (phrase[++j] != '\n')
 		str[j] = phrase[j];

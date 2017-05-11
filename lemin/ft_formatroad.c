@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_createtree.c                                    :+:      :+:    :+:   */
+/*   ft_formatroad.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 07:46:15 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/10 19:39:27 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/09 08:08:28 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/09 08:33:08 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-t_tree	*ft_createtree(char *str, t_stock *stok)
+int		ft_formatroad(char *road)
 {
-	t_tree *tree;
-	char	*name;
-	char	*tmp;
+	int i;
+	int c;
 
-	if (!(tree = malloc(sizeof(t_tree))))
-		return (NULL);
-	name = ft_strdup(str);
-	tree->str = name;
-	ft_addend(name, &stok->file);
-	tree->level = 2147483647;
-	tmp = ft_searchchild(name, stok);
-	if (!ft_strcmp(name, stok->end))
-		tree->child = NULL;
-	else if (tmp)
+	i = 0;
+	c = 0;
+	while (road[i] != '\0')
 	{
-		tree->child = ft_createlist(tmp, name, stok);
-		free (tmp);
+		if (road[i] == '-')
+			c++;
+		if (road[i] == ' ')
+			return (0);
+		i++;
 	}
+	if (c == 1)
+		return (1);
 	else
-		tree->child = NULL;
-	return (tree);
+		return (0);
 }

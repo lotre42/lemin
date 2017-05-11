@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_searchroominroad.c                              :+:      :+:    :+:   */
+/*   ft_freetree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 18:19:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:19:47 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/09 11:53:23 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/10 19:33:13 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char*ft_searchroominroad(char *str)
+void	ft_freetree(t_llist *tree)
 {
-	char	*seconderoom;
-	int		i;
-	int		j;
+	t_llist *tmp;
+	t_llist *tmp2;
+	t_tree *father;
 
-	seconderoom = NULL;
-	i = 0;
-	j = 0;
-	while (str[i] != '-' && str[i] != '\0')
-		i++;
-	if (!(seconderoom = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1))))
-		return (NULL);
-	i++;
-	while (str[i] != '\0')
+	tmp = tree;
+	if (tree->node)
 	{
-		seconderoom[j] = str[i];
-		i++;
-		j++;
+		father = tree->node;
+		free(father->str);
+		if (father->child)
+		{
+			tmp2 = father->child;
+			ft_freetree(tmp2);
+		}
+			free(tree->node);
 	}
-	seconderoom[j] = '\0';
-	return (seconderoom);
+	if (tree->next)
+	{
+		tmp = tree->next;
+		ft_freetree(tmp);
+	}
+	if (tree)
+		free(tree);
 }

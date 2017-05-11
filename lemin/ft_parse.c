@@ -1,29 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/11 18:18:18 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/11 18:18:22 by kahantar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/lemin.h"
-
-static int	ft_nbant(char *str)
-{
-	int ant;
-	int i;
-
-	ant = 0;
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != '\0')
-	{
-		if (str[i] < 48 || str[i] > 57)
-		{
-			i = 0;
-			break ;
-		}
-		i++;
-	}
-	if (i > 0)
-		return (ant = ft_atoi(str));
-	else
-		return (0);
-}
 
 static t_stock	*ft_initstock(void)
 {
@@ -41,11 +28,30 @@ static t_stock	*ft_initstock(void)
 	return (stock);
 }
 
+static void		ft_road(t_stock *stock, t_parse *tmp)
+{
+	while (tmp)
+	{
+		if (ft_strchr(tmp->str, '-') && !ft_strchr(tmp->str, ' ') &&
+				tmp->str[0] != '#')
+		{
+			if (ft_roominroad(tmp->str, stock->room) &&
+					ft_formatroad(tmp->str))
+				ft_addend(tmp->str, &stock->road);
+			else
+				break ;
+		}
+		tmp = tmp->next;
+	}
+}
+
 static t_stock	*ft_try(t_parse *lem)
 {
 	t_stock *stock;
 	t_parse *tmp;
+	char	*t;
 
+	lem = lem->next;
 	tmp = lem;
 	stock = ft_initstock();
 	if (!lem)
@@ -54,71 +60,73 @@ static t_stock	*ft_try(t_parse *lem)
 	{
 		if (lem->str[0] == '#' && lem->str[1] != '#')
 			ft_addend(lem->str, &stock->com);
-		else if (ft_strchr(lem->str, ' ') ||
-				(lem->str[0] == '#' && lem->str[1] == '#'))
+		else if ((ft_strchr(lem->str, ' ') || (lem->str[0] == '#' &&
+						lem->str[1] == '#')) && !ft_strchr(lem->str, '-'))
 		{
-			ft_addend(ft_firstword(lem->str, ' '), &stock->room);
+			t = ft_firstword(lem->str, ' ');
+			ft_addend(t, &stock->room);
 			ft_addend(lem->str, &stock->room2);
+			free(t);
 		}
 		lem = lem->next;
 	}
-	while (tmp)
-	{
-		if (ft_strchr(tmp->str, '-') && !ft_strchr(tmp->str, ' '))
-		{
-			if (ft_roominroad(tmp->str, stock->room))
-				ft_addend(tmp->str, &stock->road);
-			else
-				break ;
-		}
-		tmp = tmp->next;
-	}
+	ft_road(stock, tmp);
 	return (stock);
 }
 
-t_parse		*ft_parse(int argc, char **argv)
+static int		ft_create(t_stock *stok, t_parse *lem)
 {
-	t_parse *lem;
-	t_List *tree;
-	t_stock *stok;
-	t_road *road;
 	char	*str;
-	int	ret;
-	
-	ret = 1;
+	t_road	*road;
+	t_llist	*tree;
+	t_parse	*ok;
+
 	str = NULL;
-	lem = NULL;
 	road = NULL;
-	while ((ret = get_next_line(0, &str)))
-	{
-		ft_addend(str, &lem);
-		ft_strdel(&str);
-	}
-	if (!lem)
-	{
-		ft_putendl("ERROR");
-		return (NULL);
-	}
-	ft_nbant(lem->str);
-	lem = lem->next;
-	stok = ft_try(lem);
-	if (!ft_errorinroom(stok->room2))
-	{
-		ft_putendl("ERROR");
-		return (0);
-	}
 	str = ft_startandend(stok->room, 0);
 	stok->end = ft_startandend(stok->room, 1);
 	tree = ft_createlist(str, NULL, stok);
 	stok->start = str;
 	if (ft_searchinlist(stok->end, stok->file))
 	{
-		ft_putendl("ERROR");
-		return (0);
+		ft_freepile(&lem);
+		ft_freestock(stok);
+		return (ft_putendlreturn("ERROR"));
 	}
-//	ft_displaylist(stok->file);
+	ft_freepile(&stok->file);
 	ft_checklevel(tree, stok->end, 0, &road);
-	//ft_displayroad(road);
-	ft_searchlittleroad(stok, road);
-	return (lem);
+	ok = ft_searchlittleroad(stok, road);
+	ft_displaylist(ok);
+	ft_freepile(&ok);
+	ft_totalleaks(&lem, stok, &road, tree);
+	return (1);
+}
+
+int				ft_parse(int argc, char **argv)
+{
+	t_parse *lem;
+	t_stock *stok;
+	char	*str;
+	int		ret;
+
+	ret = 1;
+	str = NULL;
+	lem = NULL;
+	while ((ret = get_next_line(0, &str)))
+	{
+		ft_addend(str, &lem);
+		ft_strdel(&str);
+	}
+	if (!lem)
+		return (ft_putendlreturn("ERROR"));
+	if (!ft_nbant(lem->str))
+		return (ft_freeanderror(lem));
+	stok = ft_try(lem);
+	if (!ft_errorinroom(stok->room2))
+	{
+		ft_freestock(stok);
+		return (ft_freeanderror(lem));
+	}
+	ft_create(stok, lem);
+	return (1);
 }

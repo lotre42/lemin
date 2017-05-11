@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 09:20:25 by kahantar          #+#    #+#             */
-/*   Updated: 2017/03/29 20:04:45 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:54:56 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ char			**ft_strsplit(char const *str, char c)
 		i++;
 	}
 	ft_push(tab, tabl, str, c);
+	free(tabl);
 	return (tab);
 }

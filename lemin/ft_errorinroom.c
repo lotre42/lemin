@@ -6,40 +6,61 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 09:28:23 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/03 13:07:34 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 15:07:59 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-static int		ft_searchintab(char **tab)
+static int		ft_searchintab(char *str)
 {
 	int i;
-	int j;
 
-	i = 1;
-	while (tab[i] != NULL)
+	i = 0;
+	while (str[i] != ' ' && str[i] != '\0')
+		i++;
+	while (str[i])
 	{
-		j = 0;
-		while (tab[i][j] != '\0')
-		{
-			if (tab[i][j] < 48 || tab[i][j] > 57)
-				return (0);
-			j++;
-		}
+		if ((str[i] < 48 || str[i] > 57) && str[i] != ' ')
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-static int		ft_lentab(char **tab)
+static int		ft_lentab(char *str)
 {
 	int i;
+	int c;
 
 	i = 0;
-	while (tab[i])
+	c = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			c++;
 		i++;
-	if (i == 3 || i == 0)
+	}
+	if (c == 2 || c == 0)
+		return (1);
+	else
+		return (0);
+}
+
+static int		ft_comptspace(char *str)
+{
+	int i;
+	int c;
+
+	i = 0;
+	c = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ' ')
+			c++;
+		i++;
+	}
+	if (c == 2)
 		return (1);
 	else
 		return (0);
@@ -49,23 +70,18 @@ int				ft_errorinroom(t_parse *room)
 {
 	char **tab;
 
-	tab = NULL;
 	while (room)
 	{
+		tab = NULL;
 		if (room->str[0] != '#')
 		{
-			tab = ft_strsplit(room->str, ' ');
-			if ((!ft_lentab(tab)) ||(!ft_searchintab(tab)))
-			{
-				if (tab)
-					free(tab);
+			if (!ft_comptspace(room->str))
 				return (0);
-			}
 		}
-		if (tab)
+		if (room->str[0] != '#')
 		{
-			free (tab);
-			tab = NULL;
+			if ((!ft_lentab(room->str)) ||(!ft_searchintab(room->str)))
+				return (0);
 		}
 		room = room->next;
 	}

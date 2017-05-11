@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_searchroominroad.c                              :+:      :+:    :+:   */
+/*   ft_freeanderror.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 18:19:04 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:19:47 by kahantar         ###   ########.fr       */
+/*   Created: 2017/05/11 17:20:56 by kahantar          #+#    #+#             */
+/*   Updated: 2017/05/11 17:28:05 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-char*ft_searchroominroad(char *str)
+int		ft_freeanderror(t_parse *tmp)
 {
-	char	*seconderoom;
-	int		i;
-	int		j;
-
-	seconderoom = NULL;
-	i = 0;
-	j = 0;
-	while (str[i] != '-' && str[i] != '\0')
-		i++;
-	if (!(seconderoom = malloc(sizeof(char) * ((ft_strlen(str) - i) + 1))))
-		return (NULL);
-	i++;
-	while (str[i] != '\0')
-	{
-		seconderoom[j] = str[i];
-		i++;
-		j++;
-	}
-	seconderoom[j] = '\0';
-	return (seconderoom);
+	ft_freepile(&tmp);
+	ft_putendl("ERROR");
+	return (0);
 }

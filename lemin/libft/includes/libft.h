@@ -6,7 +6,7 @@
 /*   By: kahantar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 11:02:29 by kahantar          #+#    #+#             */
-/*   Updated: 2017/03/30 15:14:24 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 15:23:59 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_list
 }					t_list;
 
 char				*ft_strdup(const char *src);
+int					ft_putendlreturn(char const *s);
 size_t				ft_strlen(const char *str);
 long int			ft_atoi(const char *str);
 char				*ft_strcpy(char *dest, const char *src);
