@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 08:09:57 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/03 13:39:46 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:49:02 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char			*ft_searchbrother(char *str, char *father, t_stock *stok)
 	char	*seconde;
 	t_parse *tmp;
 
-	one = NULL;
 	seconde = NULL;
 	tmp = stok->road;
 	while (stok->road)
@@ -29,14 +28,12 @@ char			*ft_searchbrother(char *str, char *father, t_stock *stok)
 				(!ft_strcmp(one, str) && !ft_strcmp(seconde, father)))
 		{
 			free(one);
-			free (seconde);
-			stok->road =stok->road->next;
+			free(seconde);
+			stok->road = stok->road->next;
 			break ;
 		}
-		if (one)
-			free(one);
-		if (seconde)
-			free(seconde);
+		free(one);
+		free(seconde);
 		stok->road = stok->road->next;
 	}
 	seconde = ft_searchchild(father, stok);

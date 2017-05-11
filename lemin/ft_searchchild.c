@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 07:55:32 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:45:02 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:46:44 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ static char	*ft_returnchild(char *one, char *str, t_stock *stok, int i)
 
 char		*ft_searchchild(char *str, t_stock *stok)
 {
-	char *one;
-	char *seconde;
-	t_parse *tmp;
+	char	*one;
+	t_parse	*tmp;
 
 	tmp = stok->road;
 	while (tmp)
@@ -44,16 +43,16 @@ char		*ft_searchchild(char *str, t_stock *stok)
 		one = ft_firstroominroad(tmp->str);
 		if (!ft_strcmp(one, str))
 		{
-			if ((seconde = ft_returnchild(one, tmp->str, stok, 0)))
-				return (seconde);
+			if ((one = ft_returnchild(one, tmp->str, stok, 0)))
+				return (one);
 		}
 		else
 			free(one);
 		one = ft_searchroominroad(tmp->str);
 		if (!ft_strcmp(one, str))
 		{
-			if ((seconde = ft_returnchild(one, tmp->str, stok, 1)))
-				return (seconde);
+			if ((one = ft_returnchild(one, tmp->str, stok, 1)))
+				return (one);
 		}
 		else
 			free(one);

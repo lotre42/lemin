@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 07:46:15 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/10 19:39:27 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:53:27 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_tree	*ft_createtree(char *str, t_stock *stok)
 {
-	t_tree *tree;
+	t_tree	*tree;
 	char	*name;
 	char	*tmp;
 
@@ -30,7 +30,7 @@ t_tree	*ft_createtree(char *str, t_stock *stok)
 	else if (tmp)
 	{
 		tree->child = ft_createlist(tmp, name, stok);
-		free (tmp);
+		free(tmp);
 	}
 	else
 		tree->child = NULL;

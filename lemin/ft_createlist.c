@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 15:23:05 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/09 12:30:24 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:52:57 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_llist		*ft_createlist(char *str, char *father, t_stock *stok)
 {
-	t_llist *tree;
-	char *tmp;
+	t_llist		*tree;
+	char		*tmp;
 
 	if (!(tree = malloc(sizeof(t_list))))
 		return (NULL);
@@ -33,6 +33,6 @@ t_llist		*ft_createlist(char *str, char *father, t_stock *stok)
 		free(tmp);
 	}
 	if (tmp)
-		free (tmp);
+		free(tmp);
 	return (tree);
 }

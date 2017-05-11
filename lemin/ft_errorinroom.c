@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 09:28:23 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 15:07:59 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:49:45 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int				ft_errorinroom(t_parse *room)
 		}
 		if (room->str[0] != '#')
 		{
-			if ((!ft_lentab(room->str)) ||(!ft_searchintab(room->str)))
+			if ((!ft_lentab(room->str)) || (!ft_searchintab(room->str)))
 				return (0);
 		}
 		room = room->next;

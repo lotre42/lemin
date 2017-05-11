@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 11:53:23 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/10 19:33:13 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:51:38 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_freetree(t_llist *tree)
 {
-	t_llist *tmp;
+	t_llist	*tmp;
 	t_llist *tmp2;
-	t_tree *father;
+	t_tree	*father;
 
 	tmp = tree;
 	if (tree->node)
@@ -28,7 +28,7 @@ void	ft_freetree(t_llist *tree)
 			tmp2 = father->child;
 			ft_freetree(tmp2);
 		}
-			free(tree->node);
+		free(tree->node);
 	}
 	if (tree->next)
 	{
