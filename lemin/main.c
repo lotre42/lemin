@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:12:35 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:12:42 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/11 23:43:37 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 int	main(int argc, char **argv)
 {
 	ft_parse(argc, argv);
-	while (1);
 	return (0);
 }

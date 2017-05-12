@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:17:57 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:18:00 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/12 00:46:52 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct		s_stock
 }					t_stock;
 
 int					ft_add(char *str, t_parse **add);
+void				ft_displayant(t_parse *ok, int nb, char *end);
 int					ft_freeanderror(t_parse *tmp);
 int					ft_nbant(char *str);
 int					ft_addend(char *str, t_parse **add);

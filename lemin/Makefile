@@ -6,7 +6,7 @@
 #    By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/04 15:33:12 by kahantar          #+#    #+#              #
-#    Updated: 2017/05/11 18:22:03 by kahantar         ###   ########.fr        #
+#    Updated: 2017/05/11 23:34:10 by kahantar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS =  ft_add.c \
 	ft_totalleaks.c \
 	ft_nbant.c \
 	ft_freeanderror.c \
+	ft_displayant.c \
 	ft_searchlevel.c
 
 OBJ = $(SRC:.c=.o)

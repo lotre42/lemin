@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:18:18 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 20:35:48 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/12 03:27:32 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static t_stock	*ft_try(t_parse *lem)
 	return (stock);
 }
 
-static int		ft_create(t_stock *stok, t_parse *lem)
+static int		ft_create(t_stock *stok, t_parse *lem, int ant)
 {
 	char	*str;
 	t_road	*road;
@@ -96,7 +96,8 @@ static int		ft_create(t_stock *stok, t_parse *lem)
 	ft_freepile(&stok->file);
 	ft_checklevel(tree, stok->end, 0, &road);
 	ok = ft_searchlittleroad(stok, road);
-	ft_displaylist(ok);
+	ft_displaylist(lem);
+	ft_displayant(ok, ant, stok->end);
 	ft_freepile(&ok);
 	ft_totalleaks(&lem, stok, &road, tree);
 	return (1);
@@ -108,6 +109,7 @@ int				ft_parse(int argc, char **argv)
 	t_stock *stok;
 	char	*str;
 	int		ret;
+	int		ant;
 
 	ret = 1;
 	str = NULL;
@@ -121,12 +123,14 @@ int				ft_parse(int argc, char **argv)
 		return (ft_putendlreturn("ERROR"));
 	if (!ft_nbant(lem->str))
 		return (ft_freeanderror(lem));
+	else
+		ant = ft_atoi(lem->str);
 	stok = ft_try(lem);
 	if (!ft_errorinroom(stok->room2))
 	{
 		ft_freestock(stok);
 		return (ft_freeanderror(lem));
 	}
-	ft_create(stok, lem);
+	ft_create(stok, lem, ant);
 	return (1);
 }
