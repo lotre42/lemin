@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:17:57 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/12 00:46:52 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:07:43 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ void				ft_displayant(t_parse *ok, int nb, char *end);
 int					ft_freeanderror(t_parse *tmp);
 int					ft_nbant(char *str);
 int					ft_addend(char *str, t_parse **add);
-int					ft_parse(int argc, char **argv);
-int					main(int argc, char **argv);
+int					ft_parse(void);
 void				ft_displaylist(t_parse *list);
 char				*ft_startandend(t_parse *room, int i);
 int					ft_searchbestroad(t_parse *room, t_parse *road);
@@ -91,7 +90,7 @@ int					ft_freepile(t_parse **pile);
 int					ft_freeroad(t_road **pile);
 int					ft_formatroad(char *road);
 void				ft_freetree(t_llist *tree);
-void				ft_freestock(t_stock *stok);
+int					ft_freestock(t_stock *stok);
 void				ft_totalleaks(t_parse **lem, t_stock *stok,
 					t_road **road, t_llist *tree);
 void				ft_freetab(char **tab);

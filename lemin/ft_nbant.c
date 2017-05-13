@@ -6,20 +6,39 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:14:46 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/12 03:24:02 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:22:16 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-int	ft_nbant(char *str)
+static int	ft_longnb(char *str)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (str[i] == '0' && str[i] != '\0')
+		i++;
+	while (str[i] != '\0')
+	{
+		i++;
+		j++;
+	}
+	if (j > 10)
+		return (0);
+	return (1);
+}
+
+int			ft_nbant(char *str)
 {
 	int ant;
 	int i;
 
 	ant = 0;
 	i = 0;
-	if (!str)
+	if (!str || !ft_longnb(str))
 		return (0);
 	while (str[i] != '\0')
 	{

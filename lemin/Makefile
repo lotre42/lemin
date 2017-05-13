@@ -6,11 +6,11 @@
 #    By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/04 15:33:12 by kahantar          #+#    #+#              #
-#    Updated: 2017/05/11 23:34:10 by kahantar         ###   ########.fr        #
+#    Updated: 2017/05/14 01:36:41 by kahantar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= lem_in
+NAME	= lem-in
 CC	= gcc
 FLAGS 	= -Wall -Werror -Wextra
 
@@ -57,7 +57,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C libft/
-	$(CC) -o $(NAME) $(SRCS) -L./libft/ -lft
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -L./libft/ -lft
 
 clean:
 	@rm -rf $(OBJ)

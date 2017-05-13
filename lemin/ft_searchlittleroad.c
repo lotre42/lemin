@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 09:24:25 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:12:11 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:09:39 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static t_parse	*therooms(t_stock *stok, char *str)
 	t_parse	*tmp;
 	t_parse	*lst;
 	char	*one;
-	char	*t;
 
 	one = NULL;
 	tmp = stok->road;

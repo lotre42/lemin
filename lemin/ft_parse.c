@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:18:18 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/12 03:27:32 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:40:10 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ static t_stock	*ft_try(t_parse *lem)
 	stock = ft_initstock();
 	if (!lem)
 		return (0);
-	while (lem)
+	while (lem && !ft_strchr(lem->str, '-'))
 	{
 		if (lem->str[0] == '#' && lem->str[1] != '#')
 			ft_addend(lem->str, &stock->com);
 		else if ((ft_strchr(lem->str, ' ') || (lem->str[0] == '#' &&
-						lem->str[1] == '#')) && !ft_strchr(lem->str, '-'))
+		lem->str[1] == '#')) && !ft_strchr(lem->str, '-') && lem->str[0] != 'L')
 		{
 			t = ft_firstword(lem->str, ' ');
 			ft_addend(t, &stock->room);
@@ -83,15 +83,13 @@ static int		ft_create(t_stock *stok, t_parse *lem, int ant)
 
 	str = NULL;
 	road = NULL;
-	if (!(str = ft_startandend(stok->room, 0)))
-		return (0);
-	if (!(stok->end = ft_startandend(stok->room, 1)))
+	if (!(str = ft_startandend(stok->room, 0)) ||
+			(!(stok->end = ft_startandend(stok->room, 1))))
 		return (0);
 	tree = ft_createlist(str, NULL, stok);
 	stok->start = str;
-	if (ft_searchinlist(stok->end, stok->file))
+	if (ft_searchinlist(stok->end, stok->file) && ft_freepile(&lem))
 	{
-		ft_freepile(&lem);
 		ft_freestock(stok);
 		return (ft_putendlreturn("ERROR"));
 	}
@@ -105,7 +103,7 @@ static int		ft_create(t_stock *stok, t_parse *lem, int ant)
 	return (1);
 }
 
-int				ft_parse(int argc, char **argv)
+int				ft_parse(void)
 {
 	t_parse *lem;
 	t_stock *stok;
@@ -118,21 +116,18 @@ int				ft_parse(int argc, char **argv)
 	lem = NULL;
 	while ((ret = get_next_line(0, &str)))
 	{
+		if (str[0] == '\0')
+			break ;
 		ft_addend(str, &lem);
 		ft_strdel(&str);
 	}
-	if (!lem)
+	if (!lem->next)
 		return (ft_putendlreturn("ERROR"));
 	if (!ft_nbant(lem->str))
 		return (ft_freeanderror(lem));
-	else
-		ant = ft_atoi(lem->str);
+	ant = ft_atoi(lem->str);
 	stok = ft_try(lem);
-	if (!ft_errorinroom(stok->room2))
-	{
-		ft_freestock(stok);
+	if (!ft_errorinroom(stok->room2) && ft_freestock(stok))
 		return (ft_freeanderror(lem));
-	}
-	ft_create(stok, lem, ant);
-	return (1);
+	return (ft_create(stok, lem, ant));
 }

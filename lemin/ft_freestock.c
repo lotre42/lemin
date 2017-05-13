@@ -6,13 +6,13 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:39:08 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/10 15:40:30 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:07:00 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-void	ft_freestock(t_stock *stok)
+int	ft_freestock(t_stock *stok)
 {
 	if (stok)
 	{
@@ -33,4 +33,5 @@ void	ft_freestock(t_stock *stok)
 		ft_displaylist(stok->room2);
 		free(stok);
 	}
+	return (1);
 }

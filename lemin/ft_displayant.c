@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 23:31:52 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/12 03:06:33 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:25:04 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	ft_dis(char *str, int i)
 	ft_putchar('-');
 	ft_putstr(str);
 	ft_putstr("\033[0m");
+	ft_putchar(' ');
 }
 
 static void	ft_suite(t_parse *ok, int nb, char *end)
@@ -52,10 +53,7 @@ static void	ft_suite(t_parse *ok, int nb, char *end)
 		while (x > 0)
 		{
 			if (len <= nb)
-			{
 				ft_dis(ft_retroom(ok, x), len);
-				ft_putchar(' ');
-			}
 			len++;
 			x--;
 		}
@@ -63,6 +61,7 @@ static void	ft_suite(t_parse *ok, int nb, char *end)
 		t++;
 	}
 	ft_dis(end, nb);
+	ft_putchar('\n');
 }
 
 void		ft_displayant(t_parse *ok, int nb, char *end)
@@ -72,6 +71,7 @@ void		ft_displayant(t_parse *ok, int nb, char *end)
 	int x;
 
 	i = 0;
+	ft_putchar('\n');
 	ft_putstr("Les fourmis vont parcourir ");
 	ft_putnbr(ft_listlen(ok));
 	ft_putstr(" salles.");
@@ -83,10 +83,7 @@ void		ft_displayant(t_parse *ok, int nb, char *end)
 		while (x > 0)
 		{
 			if (len <= nb)
-			{
 				ft_dis(ft_retroom(ok, x), len);
-				ft_putchar(' ');
-			}
 			x--;
 			len++;
 		}

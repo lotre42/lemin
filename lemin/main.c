@@ -6,14 +6,14 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:12:35 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 23:43:37 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:03:29 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-int	main(int argc, char **argv)
+int	main(void)
 {
-	ft_parse(argc, argv);
+	ft_parse();
 	return (0);
 }

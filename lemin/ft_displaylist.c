@@ -6,13 +6,20 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:53:52 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:54:28 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:03:05 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lemin.h"
 
-void	ft_displaylist(t_parse *list)
+static void	ft_disl(char *str, char *display)
+{
+	ft_putstr(str);
+	ft_putendl(display);
+	ft_putstr("\033[0m");
+}
+
+void		ft_displaylist(t_parse *list)
 {
 	t_parse *display;
 
@@ -20,29 +27,13 @@ void	ft_displaylist(t_parse *list)
 	while (display)
 	{
 		if (display->str[0] == '#' && display->str[1] == '#')
-		{
-			ft_putstr("\033[32m");
-			ft_putendl(display->str);
-			ft_putstr("\033[0m");
-		}
+			ft_disl("\033[32m", display->str);
 		else if (display->str[0] == '#' && display->str[1] != '#')
-		{
-			ft_putstr("\033[31m");
-			ft_putendl(display->str);
-			ft_putstr("\033[0m");
-		}
+			ft_disl("\033[31m", display->str);
 		else if (!ft_strchr(display->str, '-'))
-		{	
-			ft_putstr("\033[33m");
-			ft_putendl(display->str);
-			ft_putstr("\033[0m");
-		}
+			ft_disl("\033[33m", display->str);
 		else
-		{
-			ft_putstr("\033[34m");
-			ft_putendl(display->str);
-			ft_putstr("\033[0m");
-		}
+			ft_disl("\033[34m", display->str);
 		display = display->next;
 	}
 }

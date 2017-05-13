@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:16:45 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/11 18:17:13 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/14 01:34:02 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char		*ft_startandend(t_parse *room, int i)
 	tmp = room;
 	end = NULL;
 	start = NULL;
-	while (tmp)
+	while (tmp->next)
 	{
 		if ((!ft_strcmp("##start", tmp->str) &&
 					!ft_strcmp("##end", tmp->next->str))
