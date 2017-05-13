@@ -27,10 +27,14 @@ static char	*ft_retroom(t_parse *ok, int i)
 
 static void	ft_dis(char *str, int i)
 {
+	ft_putstr("\e[38;5;");
+	ft_putnbr(100 + (i % 20));
+	ft_putstr("m");
 	ft_putchar('L');
 	ft_putnbr(i);
 	ft_putchar('-');
 	ft_putstr(str);
+	ft_putstr("\033[0m");
 }
 
 static void	ft_suite(t_parse *ok, int nb, char *end)
@@ -68,6 +72,9 @@ void		ft_displayant(t_parse *ok, int nb, char *end)
 	int x;
 
 	i = 0;
+	ft_putstr("Les fourmis vont parcourir ");
+	ft_putnbr(ft_listlen(ok));
+	ft_putstr(" salles.");
 	x = 7;
 	while (i < ft_listlen(ok))
 	{

@@ -83,8 +83,10 @@ static int		ft_create(t_stock *stok, t_parse *lem, int ant)
 
 	str = NULL;
 	road = NULL;
-	str = ft_startandend(stok->room, 0);
-	stok->end = ft_startandend(stok->room, 1);
+	if (!(str = ft_startandend(stok->room, 0)))
+		return (0);
+	if (!(stok->end = ft_startandend(stok->room, 1)))
+		return (0);
 	tree = ft_createlist(str, NULL, stok);
 	stok->start = str;
 	if (ft_searchinlist(stok->end, stok->file))

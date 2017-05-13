@@ -19,7 +19,30 @@ void	ft_displaylist(t_parse *list)
 	display = list;
 	while (display)
 	{
-		ft_putendl(display->str);
+		if (display->str[0] == '#' && display->str[1] == '#')
+		{
+			ft_putstr("\033[32m");
+			ft_putendl(display->str);
+			ft_putstr("\033[0m");
+		}
+		else if (display->str[0] == '#' && display->str[1] != '#')
+		{
+			ft_putstr("\033[31m");
+			ft_putendl(display->str);
+			ft_putstr("\033[0m");
+		}
+		else if (!ft_strchr(display->str, '-'))
+		{	
+			ft_putstr("\033[33m");
+			ft_putendl(display->str);
+			ft_putstr("\033[0m");
+		}
+		else
+		{
+			ft_putstr("\033[34m");
+			ft_putendl(display->str);
+			ft_putstr("\033[0m");
+		}
 		display = display->next;
 	}
 }

@@ -12,6 +12,28 @@
 
 #include "includes/lemin.h"
 
+static int		ft_words(char *str)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		while (str[i] == ' ')
+			i++;
+		if ((str[i] != ' ') && (str[i] != '\0'))
+			j++;
+		while ((str[i] != ' ') && (str[i] != '\0'))
+			i++;
+	}
+	if (j == 3 || j == 0)
+		return (1);
+	else
+		return (0);
+}
+
 static int		ft_searchintab(char *str)
 {
 	int i;
@@ -28,25 +50,6 @@ static int		ft_searchintab(char *str)
 	return (1);
 }
 
-static int		ft_lentab(char *str)
-{
-	int i;
-	int c;
-
-	i = 0;
-	c = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ')
-			c++;
-		i++;
-	}
-	if (c == 2 || c == 0)
-		return (1);
-	else
-		return (0);
-}
-
 static int		ft_comptspace(char *str)
 {
 	int i;
@@ -60,7 +63,7 @@ static int		ft_comptspace(char *str)
 			c++;
 		i++;
 	}
-	if (c == 2)
+	if (c == 2 || c == 0)
 		return (1);
 	else
 		return (0);
@@ -68,11 +71,8 @@ static int		ft_comptspace(char *str)
 
 int				ft_errorinroom(t_parse *room)
 {
-	char **tab;
-
 	while (room)
 	{
-		tab = NULL;
 		if (room->str[0] != '#')
 		{
 			if (!ft_comptspace(room->str))
@@ -80,7 +80,7 @@ int				ft_errorinroom(t_parse *room)
 		}
 		if (room->str[0] != '#')
 		{
-			if ((!ft_lentab(room->str)) || (!ft_searchintab(room->str)))
+			if ((!ft_searchintab(room->str)) || (!ft_words(room->str)))
 				return (0);
 		}
 		room = room->next;
