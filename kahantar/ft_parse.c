@@ -6,7 +6,7 @@
 /*   By: kahantar <kahantar@42.student.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:18:18 by kahantar          #+#    #+#             */
-/*   Updated: 2017/05/15 23:41:40 by kahantar         ###   ########.fr       */
+/*   Updated: 2017/05/16 00:41:38 by kahantar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ int				ft_parse(void)
 	lem = NULL;
 	while ((ret = get_next_line(0, &str)))
 	{
-		if (str[0] == '\0')
+		if (ret < 0 || str[0] == '\0')
 			break ;
 		ft_addend(str, &lem);
 		ft_strdel(&str);
 	}
-	if (!lem || !lem->next || ret == -1)
+	if (!lem || !lem->next || ret < 0)
 		return (ft_putendlreturn("ERROR"));
 	if (!ft_nbant(lem->str))
 		return (ft_freeanderror(&lem));
